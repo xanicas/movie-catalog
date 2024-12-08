@@ -1,0 +1,20 @@
+@use "@/assets/styles/variables" as *;
+@use "./components/header";
+@use "./components/movieslist";
+@use "./components/searchbar";
+@use "./components/imagewithfallback";
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: $font-stack;
+}
+
+.wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 $spacing-16;
+}

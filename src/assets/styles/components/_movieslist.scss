@@ -1,0 +1,75 @@
+@use "@/assets/styles/variables" as *;
+
+.movie-list {
+    padding: $spacing-16;
+    box-sizing: border-box;
+
+    .heading {
+        text-align: center;
+        padding: $spacing-16 0;
+    }
+
+    .filter {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: $spacing-16;
+        flex-wrap: wrap;
+    }
+
+    .movies {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: $spacing-16;
+        margin-bottom: $spacing-16;
+
+        .movie {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: $spacing-8;
+            border-radius: 4px;
+            background-color: #fff;
+
+            .movie-rating {
+                display: flex;
+            }
+        }
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 1024px) {
+        .movies {
+            grid-template-columns: repeat(4, 1fr);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .movies {
+            grid-template-columns: repeat(3, 1fr);
+        }
+
+        .filter {
+            flex-direction: column;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .movies {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+}
+
+.pagination,
+.page-size {
+    display: flex;
+    justify-content: center;
+    margin-top: $spacing-16;
+}
+
+.page-size {
+    justify-content: flex-end;
+}

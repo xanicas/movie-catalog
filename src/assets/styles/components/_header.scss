@@ -1,0 +1,61 @@
+@use "@/assets/styles/variables" as *;
+
+.app-header {
+    padding: $spacing-16 0;
+    color: $text-color-1;
+    background-color: $primary-color-2;
+
+    .wrapper {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    h1 {
+        font-size: 24px;
+        margin: 0;
+    }
+
+    nav {
+        ul {
+            list-style: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+
+            li {
+                margin-left: $spacing-16;
+
+                a {
+                    color: $text-color-1;
+                    text-decoration: none;
+
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px) {
+    .app-header { 
+        
+        .wrapper {
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        nav {
+
+            ul {
+                margin-top: 8px;
+
+                li {
+                    margin-left: 0;
+                }
+            }
+        }        
+    }
+}

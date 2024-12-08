@@ -1,0 +1,29 @@
+@use "@/assets/styles/variables" as *;
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 1px solid $secondary-color-1;
+    border-radius: 4px;
+    padding: $spacing-8 $spacing-12;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+
+    i {
+        margin-right: $spacing-8;
+        color: $secondary-color-1;
+    }
+
+    input {
+        border: none;
+        background: transparent;
+        outline: none;
+        flex: 1;
+        font-size: 16px;
+        color: #333;
+        padding: 4px 0;
+
+        &::placeholder {
+            color: $secondary-color-1;
+        }
+    }
+}
