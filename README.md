@@ -31,18 +31,11 @@ To fetch data from the TMDb API, you'll need an API key. Follow these steps to s
 1. **Sign Up**: Create an account at [TMDb](https://www.themoviedb.org/) if you haven't already.
 2. **Generate API Key**: Navigate to your account settings and request an API key from the **API section**.
 3. **Add API Key to Your Project**:
-   - Create a `.env` file in the root of your project if it doesn't exist.
+   - Copy `.env.example` to a new file called `.env` in the root of your project.
    - Add your API key to the `.env` file as follows:
      ```plaintext
      VUE_APP_TMDB_API_KEY=your_api_key_here
      ```
-
-### Environment Variables
-- The application uses environment variables to securely access the TMDb API key. Make sure your `.env` file is included in your `.gitignore` to prevent it from being pushed to version control.
-- The key can be accessed in your Vue application code using:
-  ```javascript
-  const apiKey = process.env.VUE_APP_TMDB_API_KEY;
-    ```
 
 ## Running the Project
 
@@ -51,8 +44,18 @@ To start the development server with hot-reloading, use the following command:
 ```bash
 npm run serve
 ```
+This will start the application in development mode and watch for any changes you make to the code. The development server will typically be accessible at `http://localhost:8080`.
 
-### Explanation:
-- **Development**: The `npm run serve` command starts a local development server that automatically updates the app when code changes are detected.
-- **Production Build**: The `npm run build` command creates an optimized version of the app for production, making it ready to be deployed to a web server.
-- **Running Tests**: The `npm run test:unit` command runs the project's unit tests to ensure your code is functioning as expected.
+### Production Build
+To create a production build of the project, use the following command:
+```bash
+npm run build
+```
+This command will compile and minify the project files into a `dist` directory. The generated files are optimized for production deployment and can be served by any static file server.
+
+### Running Tests
+To run the unit tests and verify the correctness of the application, use:
+```bash
+npm run test:unit
+```
+This will execute the unit tests in the project and display the results in the console.
