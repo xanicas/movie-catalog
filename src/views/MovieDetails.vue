@@ -19,7 +19,7 @@
                     <div class="movie-info">
                         <h2>{{ movie.title }}</h2>
                         <p><strong>Release Date:</strong> {{ movie.release_date }}</p>
-                        <p>{{ movie.overview }}</p>
+                        <p class="movie-overview">{{ movie.overview }}</p>
                         <div v-if="movie.genres && movie.genres.length > 0" class="movie-genres">
                             <p>Genres</p>
                             <div v-for="genre in movie.genres" :key="genre.id" class="genres">
@@ -47,6 +47,7 @@ export default {
     data() {
         return {
             movie: null,
+            error: '',
         };
     },
     computed: {
@@ -57,9 +58,16 @@ export default {
     async created() {
         try {
             const response = await fetchMovieById(this.selectedMovieId);
-            this.movie = response.data;
+            if (response && response.data) {
+                this.movie = response.data;
+            } else {
+                throw new Error('Invalid response data');
+            }
         } catch (error) {
-            console.error('Error fetching movie details:', error);
+            this.error = 'Failed to fetch movie details';
+            if (process.env.NODE_ENV === 'development') {
+                console.error('Error fetching movie details:', error);
+            }
         }
     },
     methods: {

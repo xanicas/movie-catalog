@@ -38,7 +38,7 @@ export default {
     },
     methods: {
         emitGenreChange() {
-            this.$emit("changeGenre", this.localSelectedGenre);
+            this.$emit("changeGenre", this.localSelectedGenre.toString());
         },
     },
 };
