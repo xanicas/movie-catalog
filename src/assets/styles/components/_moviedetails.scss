@@ -1,0 +1,97 @@
+@use "@/assets/styles/variables" as *;
+
+.movie-details {
+    padding: $spacing-32 0;
+
+    .back-button {
+        margin-bottom: $spacing-16;
+        font-size: 16px;
+        cursor: pointer;
+        color: $blue-200;
+
+        i {
+            margin-right: $spacing-4;
+        }
+    }
+        
+    .movie-details-container {
+        display: flex;
+        align-items: flex-start;
+        gap: $spacing-24;
+
+        .movie-image {
+            flex-shrink: 0;
+            text-align: center;
+
+            img {
+                max-width: 200px;
+                height: auto;
+                border-radius: 4px;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+        }
+
+        .movie-rating {
+            margin-top: $spacing-12;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            i {
+                margin-left: $spacing-4;
+                font-size: 14px;
+            }
+        }
+
+        .movie-info {
+            flex: 1;
+
+            h2 {
+                margin-top: 0;
+                font-size: 24px;
+            }
+
+            p {
+                margin: $spacing-8 0;
+                line-height: 1.5;
+            }
+        }
+
+        .movie-genres {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: $spacing-4;
+
+            p {
+                font-size: 13px;
+                color: $grey-100;
+            }
+
+            span {
+                padding: $spacing-4 $spacing-8;
+                border: 1px solid $grey-100;
+                border-radius: 20px;
+                font-size: 12px;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                white-space: nowrap; 
+            }
+        }
+    }
+
+    @media (max-width: 768px) {
+        .movie-details-container {
+            flex-direction: column;
+            align-items: center;
+        }
+    
+        .movie-image {
+            margin-bottom: $spacing-32;
+        }
+    
+        .movie-info {
+            text-align: center;
+        }
+    }
+}

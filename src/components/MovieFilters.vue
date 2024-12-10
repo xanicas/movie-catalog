@@ -1,7 +1,9 @@
 <template>
     <div class="filter">
+        <!-- Search bar filter -->
         <search-bar @updateMovies="$emit('updateMovies', $event)" @resetMovies="$emit('resetMovies', $event)" />
 
+        <!-- Genre filter -->
         <div class="genre-filter">
             <span>Filter by genre</span>
             <select v-model="localSelectedGenre" @change="emitGenreChange">
@@ -19,8 +21,14 @@ import SearchBar from "@/components/SearchBar.vue";
 
 export default {
     props: {
-        genres: Array,
-        selectedGenre: String,
+        genres: {
+            type: Array,
+            default: () => [],
+        },
+        selectedGenre: {
+            type: String,
+            default: ''
+        },
     },
     components: { SearchBar },
     data() {

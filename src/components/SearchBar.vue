@@ -1,7 +1,7 @@
 <template>
     <div class="search-bar">
         <i class="fa fa-search"></i>
-        <input v-model="query" @input="onSearch" placeholder="Search movie" />
+        <input v-model="query" @input="onSearch" :placeholder="placeholder" />
     </div>
 </template>
 
@@ -9,6 +9,12 @@
 import { searchMovies } from "@/services/api";
 
 export default {
+    props: {
+        placeholder: {
+            type: String,
+            default: 'Search movie',
+        },
+    },
     data() {
         return {
             query: "",
@@ -18,7 +24,7 @@ export default {
         async onSearch() {
             if (this.query.length > 0) {
                 const response = await searchMovies(this.query);
-                this.$emit("updateMovies", response.data.results);
+                this.$emit("updateMovies", response.data);
             } else if (this.query.length === 0) {
                 this.$emit("resetMovies");
             }

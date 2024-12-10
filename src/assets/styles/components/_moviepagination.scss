@@ -1,0 +1,20 @@
+@use "@/assets/styles/variables" as *;
+
+.pagination-controls {
+
+    .pagination,
+    .page-size {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin-top: $spacing-16;
+
+        span, label {
+            margin: 0 $spacing-8;
+        }
+    }
+
+    .page-size {
+        justify-content: flex-end;
+    }
+}

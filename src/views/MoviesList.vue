@@ -1,32 +1,22 @@
 <template>
     <div class="movie-list" :class="{ isLoading: loading }">
         <div class="wrapper">
-            <h2 class="heading">Movies</h2>
-
             <!-- Filters Component -->
-            <MovieFilters
-                :genres="genres"
-                :selectedGenre="selectedGenre"
-                @updateMovies="handleUpdateMovies"
-                @resetMovies="fetchMovies"
-                @changeGenre="handleGenreChange" />
+            <MovieFilters :genres="genres" :selectedGenre="selectedGenre" @updateMovies="handleUpdateMovies"
+                @resetMovies="fetchMovies" @changeGenre="handleGenreChange" />
 
             <!-- Movies Component -->
-            <MovieList 
-                :movies="displayedMovies" />
+            <MovieList :movies="displayedMovies" />
 
             <!-- Pagination Controls -->
-            <MoviePagination
-                :currentPage="currentFrontendPage"
-                :totalPages="totalFrontendPages"
-                :moviesPerPage="moviesPerPage"
-                @changePage="changePage"
-                @changePageSize="handlePageSizeChange" />
+            <MoviePagination :currentPage="currentFrontendPage" :totalPages="totalFrontendPages"
+                :moviesPerPage="moviesPerPage" @changePage="changePage" @changePageSize="handlePageSizeChange" />
         </div>
     </div>
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 import { fetchMovies, fetchGenres } from "@/services/api";
 import MovieFilters from "@/components/MovieFilters.vue";
 import MovieList from "@/components/MovieList.vue";
@@ -37,7 +27,6 @@ export default {
     data() {
         return {
             loading: false,
-            genres: [],
             selectedGenre: "",
             movies: [],
             currentPage: 1,
@@ -47,10 +36,11 @@ export default {
         };
     },
     computed: {
+        ...mapGetters([
+            "genres"
+        ]),
         displayedMovies() {
-            const startIndex =
-                ((this.currentFrontendPage - 1) % (20 / this.moviesPerPage)) *
-                this.moviesPerPage;
+            const startIndex = ((this.currentFrontendPage - 1) % (20 / this.moviesPerPage)) * this.moviesPerPage;
             return this.movies.slice(startIndex, startIndex + this.moviesPerPage);
         },
         totalFrontendPages() {
@@ -65,10 +55,15 @@ export default {
     },
     methods: {
         async fetchGenres() {
-            try {
-                this.genres = await fetchGenres();
-            } catch (error) {
-                console.error("Error fetching genres:", error);
+            if (this.genres.length === 0) {
+                try {
+                    const genres = await fetchGenres();
+                    this.$store.dispatch('setGenres', genres);
+                } catch (error) {
+                    console.error("Error fetching genres:", error);
+                }
+            } else {
+                console.log("Genres are already loaded in the store.");
             }
         },
         async fetchMovies() {
@@ -87,23 +82,21 @@ export default {
             this.currentFrontendPage = 1;
             this.fetchMovies();
         },
-        handleUpdateMovies(newMovies) {
-            this.movies = newMovies;
+        handleUpdateMovies(payload) {
+            this.movies = payload.results;
+            this.totalPages = payload.total_pages;
+            this.currentPage = 1;
+            this.currentFrontendPage = 1;
         },
         async changePage(newFrontendPage) {
-            const backendPage = Math.ceil(
-                newFrontendPage / (20 / this.moviesPerPage)
-            );
+            const backendPage = Math.ceil(newFrontendPage / (20 / this.moviesPerPage));
 
             if (backendPage !== this.currentPage && backendPage <= this.totalPages) {
                 this.currentPage = backendPage;
                 await this.fetchMovies();
             }
 
-            if (
-                newFrontendPage > 0 &&
-                newFrontendPage <= this.totalFrontendPages
-            ) {
+            if (newFrontendPage > 0 && newFrontendPage <= this.totalFrontendPages) {
                 this.currentFrontendPage = newFrontendPage;
             }
         },

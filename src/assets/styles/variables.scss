@@ -1,19 +1,24 @@
 // FONTS
-$font-stack: Avenir, Helvetica, Arial, sans-serif;
+$font-stack: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 
 // COLORS
-$primary-white: white;
-$primary-color-1: #D4A373;
-$primary-color-2: #FAEDCD;
-$primary-color-3: #FEFAE0;
-$primary-color-4: #E9EDC9;
-$primary-color-5: #CCD5AE;
-$secondary-color-1: #bcb8b1;
+$white-100: white;
+$background-color-1: #f8f5f1;
+$background-color-2: #F4F1EA;
 
-$text-color-1: #5e3023;
+$grey-100: #bcb8b1;
+$grey-200: #c0c0c0;
+
+$blue-100: #3a6ea5;
+$blue-200: #004e98;
+
+$yellow-100: #f5c518;
+
+$text-color-1: #382110;
 
 
 // SPACINGS
+$spacing-4: 4px;
 $spacing-8: 8px;
 $spacing-12: 12px;
 $spacing-16: 16px;

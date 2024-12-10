@@ -1,23 +1,41 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 Vue.use(Vuex);
 
 export default new Vuex.Store({
-  state: {
-    movies: [],
-  },
-  mutations: {
-    SET_MOVIES(state, movies) {
-      state.movies = movies;
+    state: {
+        genres: [],
+        totalPages: 0,
+        selectedMovieId: null,
     },
-  },
-  actions: {
-    fetchMovies({ commit }, movies) {
-      commit('SET_MOVIES', movies);
+    mutations: {
+        SET_GENRES(state, genres) {
+            state.genres = genres;
+        },
+        SET_TOTAL_PAGES(state, totalPages) {
+            state.totalPages = totalPages;
+        },
+        SET_SELECTED_MOVIE_ID(state, id) {
+            state.selectedMovieId = id;
+        },
     },
-  },
-  getters: {
-    allMovies: (state) => state.movies,
-  },
+    actions: {
+        setGenres({ commit }, payload) {
+            commit('SET_GENRES', payload);
+        },
+        setTotalPages({ commit }, payload) {
+            commit('SET_TOTAL_PAGES', payload);
+        },
+        setSelectedMovieId({ commit }, id) {
+            commit('SET_SELECTED_MOVIE_ID', id);
+        },
+    },
+    getters: {
+        genres: (state) => state.genres,
+        totalPages: (state) => state.totalPages,
+        selectedMovieId: (state) => state.selectedMovieId,
+    },
+    plugins: [createPersistedState()],
 });

@@ -17,12 +17,12 @@ export default {
         },
         placeholder: {
             type: String,
-            default: require('../assets/images/no_image_placeholder.svg'),
+            default: '../assets/images/no_image_placeholder.svg',
         },
     },
     data() {
         return {
-            resolvedSrc: this.src,
+            resolvedSrc: this.src || this.placeholder,
         };
     },
     methods: {

@@ -1,0 +1,12 @@
+@use "@/assets/styles/variables" as *;
+
+.filter {
+
+    .genre-filter {
+
+        span {
+            margin-right: $spacing-8;
+            font-size: 13px;
+        }
+    }
+}

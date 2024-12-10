@@ -3,14 +3,16 @@
 .search-bar {
     display: flex;
     align-items: center;
-    border: 1px solid $secondary-color-1;
-    border-radius: 4px;
+    height: 20px;
     padding: $spacing-8 $spacing-12;
+    border: 1px solid $grey-100;
+    border-radius: 4px;
+    background-color: $white-100;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
     i {
         margin-right: $spacing-8;
-        color: $secondary-color-1;
+        color: $grey-100;
     }
 
     input {
@@ -18,12 +20,12 @@
         background: transparent;
         outline: none;
         flex: 1;
-        font-size: 16px;
+        font-size: 15px;
         color: #333;
         padding: 4px 0;
 
         &::placeholder {
-            color: $secondary-color-1;
+            color: $grey-100;
         }
     }
 }

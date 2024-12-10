@@ -1,19 +1,17 @@
 <template>
     <div id="app">
         <HeaderComponent />
-        <MoviesList />
+        <router-view></router-view>
     </div>
 </template>
 
 <script>
 import HeaderComponent from "./components/Header.vue";
-import MoviesList from "./views/MoviesList.vue";
-
 
 export default {
     name: 'App',
     components: {
-        HeaderComponent, MoviesList
+        HeaderComponent
     }
 }
 </script>

@@ -15,9 +15,9 @@
         <div class="page-size">
             <label for="movies-per-page">Movies per page:</label>
             <select id="movies-per-page" v-model="localMoviesPerPage" @change="emitPageSizeChange">
-                <option value="10">10</option>
-                <option value="15">15</option>
-                <option value="20">20</option>
+                <option v-for="option in pageSizeOptions" :key="option" :value="option">
+                    {{ option }}
+                </option>
             </select>
         </div>
     </div>
@@ -26,9 +26,22 @@
 <script>
 export default {
     props: {
-        currentPage: Number,
-        totalPages: Number,
-        moviesPerPage: Number,
+        currentPage: {
+            type: Number,
+            default: 0
+        },
+        totalPages: {
+            type: Number,
+            default: 0
+        },
+        moviesPerPage: {
+            type: Number,
+            default: 0
+        },
+        pageSizeOptions: {
+            type: Array,
+            default: () => [10, 20]
+        }
     },
     data() {
         return {

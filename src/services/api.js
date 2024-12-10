@@ -43,3 +43,11 @@ export const searchMovies = (query) => {
         }
     });
 };
+
+export const fetchMovieById = (id) => {
+    return axios.get(`${API_URL}/movie/${id}`, {
+        params: {
+            api_key: API_KEY,
+        },
+    });
+};
